@@ -19,15 +19,15 @@ Here is exactly how data moves through the system, from raw Markdown files to AI
 
 ```mermaid
 flowchart LR
-    A[Markdown Vault] -->|1. Read & Split on #| B(Header Chunks)
-    B -->|2. Ollama: nomic-embed-text| C{Vector Embeddings}
-    C -->|3. Upsert| D[(ChromaDB\nvault_db)]
+    A["Markdown Vault"] -->|1. Read & Split on #| B("Header Chunks")
+    B -->|2. Ollama: nomic-embed-text| C{"Vector Embeddings"}
+    C -->|3. Upsert| D[("ChromaDB vault_db")]
     
-    Q[User Query] -->|4. Ollama: nomic-embed-text| QE{Query Vector}
+    Q["User Query"] -->|4. Ollama: nomic-embed-text| QE{"Query Vector"}
     QE -->|5. Cosine Similarity| D
-    D -->|6. Top 2 Matches| P[Context + Prompt]
+    D -->|6. Top 2 Matches| P["Context + Prompt"]
     Q --> P
-    P -->|7. Ollama: qwen2.5-coder:3b| AI[Final Answer with\n[[Wiki-Links]]]
+    P -->|7. Ollama: qwen2.5-coder:3b| AI["Final Answer with [[Wiki-Links]]"]
 ```
 
 ### Step-by-Step Breakdown:
